@@ -1,10 +1,11 @@
+# 🧠 IMPORTS & CONFIGURATION
 import requests
 import time
 import json
 import os
 from dotenv import load_dotenv
 
-# Charger le token depuis .env
+# 🔐 Étape 1 - Charger le token GitHub depuis le fichier .env
 load_dotenv()
 token = os.getenv ("GITHUB_TOKEN")
 
@@ -13,10 +14,11 @@ headers = {
     "User-Agent": "GitHub API Script"
 }
 
+# 🔗 Étape 2 - URLs pour l'API GitHub
 url = "https://api.github.com/users"
 search_url = "https://api.github.com/search/users"
 
-
+# 🔍 Étape 3 - Récupération des détails d'un utilisateur
 def get_user_details(login):
     try:
         response = requests.get(f"{url}/{login}", headers=headers)
@@ -28,6 +30,7 @@ def get_user_details(login):
         print(f"Erreur réseau : {e}")
     return None
 
+# 🕓 Étape 4 - Gestion du quota d'appels API (rate limit)
 def handle_rate_limit(response):
     if response.status_code == 403:
         reset_time = int(response.headers.get("X-RateLimit-Reset", time.time()))
@@ -35,6 +38,7 @@ def handle_rate_limit(response):
         print(f"⏳ Quota dépassé, pause de {wait_time}s...")
         time.sleep(wait_time + 1)
 
+# 📥 Étape 5 - Extraction de tous les utilisateurs
 def get_all_users(target_count=300):
     all_users = []
     page = 1
@@ -55,14 +59,14 @@ def get_all_users(target_count=300):
                     continue
 
                 if response.status_code != 200:
-                    print(f"Erreur {response.status_code} lors de la récupération des utilisateurs")
+                    print(f"❌ Erreur {response.status_code} lors de la récupération des utilisateurs")
                     break
                 
                 data = response.json()
                 users = data.get("items", [])
                 
         except requests.exceptions.RequestException as e:
-            print(f"Erreur réseau pendant la recherche : {e}")
+            print(f"❌ Erreur réseau pendant la recherche : {e}")
             break
         
         except ValueError:
@@ -70,7 +74,7 @@ def get_all_users(target_count=300):
                 break
         
         if not users:
-            print("Aucun utilisateur trouvé.")
+            print("⚠️ Aucun utilisateur trouvé.")
             break
 
         for user in users:
@@ -93,24 +97,26 @@ def get_all_users(target_count=300):
             
     return all_users
     
-    
+# 🚀 Fonction principale
 def main():
     users = get_all_users(target_count = 300 )  # Récupérer 300 utilisateurs
-    
+
+  # 📋 Affichage des utilisateurs  
     for user in users:
             
-            print("Login:", user['login'])
-            print("ID:", user['id'])
-            print("Avatar URL:", user['avatar_url'])
-            print("Date de création:", user['created_at'])
-            print("Bio:", user['bio'])
-            print("-" * 40)
+        print("👤 Login:", user['login'])
+        print("🆔 ID:", user['id'])
+        print("🖼️ Avatar URL:", user['avatar_url'])
+        print("📅 Date de création:", user['created_at'])
+        print("📝 Bio:", user['bio'])
+        print("-" * 40)
                 
-# 💾 Sauvegarde des données brutes dans users.json
+# 💾 Étaape 6 - Sauvegarde des données brutes dans users.json
     with open("tp-api-c1-c5/users.json", "w", encoding="utf-8") as f:
         json.dump(users, f, indent=4, ensure_ascii=False)
 
     print("✅ Données sauvegardées dans users.json")
-    
+  
+# ✅ Exécution du script  
 if __name__ == "__main__":
     main()

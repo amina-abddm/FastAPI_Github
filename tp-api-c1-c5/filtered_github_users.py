@@ -102,5 +102,6 @@ def main():
     save_filtered_users(filtered, output_path)
     summarize(original_count, unique_count, filtered_count)
 
+# ✅ Exécution du script
 if __name__ == "__main__":
     main()
