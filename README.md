@@ -43,7 +43,7 @@ L’API utilise une **authentification par token**, simulant une API privée ou 
 
 ## 🗂️ Structure du projet
 
-````
+```bash
 
 tp-api-c1-c5/
 │
@@ -65,7 +65,7 @@ tp-api-c1-c5/
 ├── requirements.txt            # Bibliothèques à installer
 ├── .env                        # Token GitHub & Token API
 └── README.md                   # Documentation du projet
-````
+```
 
 ## ✨ Résultat attendu
 
@@ -83,3 +83,38 @@ tp-api-c1-c5/
 - 🧱 Architecture Python modulaire et maintenable
 - ⚙️ Développement d’API REST avec **FastAPI**
 - 🛡️ Sécurisation d’une API via authentification par **token**
+
+---
+
+## 🚀 Lancer le projet
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/amina-abddm/FastAPI_Github.git
+cd FastAPI_Github
+```
+
+## ⚙️ Installation et configuration
+
+### 2. Créer et activer un environnement virtuel
+
+```bash
+python -m venv .venv
+source .venv/bin/activate      # 💻 Sur macOS/Linux  
+.venv\Scripts\activate         # 🪟 Sur Windows
+```
+
+### 3. Installation des dépendances
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configurer le token GitHub (🔒 sécurisé)
+
+```bash
+GITHUB_TOKEN=your_personal_access_token_here
+```
+
+⚠️ Ne partagez jamais votre token publiquement ou dans un dépôt distant!
