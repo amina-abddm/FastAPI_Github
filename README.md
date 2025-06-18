@@ -69,7 +69,7 @@ tp-api-c1-c5/
 
 ## ✨ Résultat attendu
 
-- ✅ Un fichier `users.json` propre après extraction et nettoyage
+- ✅ Un fichier `filtered_users.json` propre après extraction et nettoyage
 - 🌐 Une API REST locale disponible avec plusieurs endpoints fonctionnels
 - 🔒 Une authentification basique par token simulant une API interne sécurisée
 
