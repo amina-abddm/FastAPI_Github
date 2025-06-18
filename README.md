@@ -43,6 +43,7 @@ L’API utilise une **authentification par token**, simulant une API privée ou 
 
 ## 🗂️ Structure du projet
 
+````
 
 tp-api-c1-c5/
 │
@@ -64,6 +65,7 @@ tp-api-c1-c5/
 ├── requirements.txt            # Bibliothèques à installer
 ├── .env                        # Token GitHub & Token API
 └── README.md                   # Documentation du projet
+````
 
 ## ✨ Résultat attendu
 
