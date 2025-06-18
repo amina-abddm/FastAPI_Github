@@ -1,5 +1,4 @@
 datetime
 dotenv
-os
 requests
 time
