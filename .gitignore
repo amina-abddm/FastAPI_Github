@@ -1,1 +1,3 @@
 tp-api-c1-c5/.env
+.venv
+__pycache__
