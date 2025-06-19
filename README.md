@@ -1,8 +1,10 @@
 # 👥 GitHub Users API – Extraction & REST API avec FastAPI
 
-## 🎯 Objectif du projet
+## 🚀 FastAPI - Utilisateurs GitHub filtrés
 
-Ce projet a pour but de créer un pipeline complet de **collecte**, **nettoyage**, puis **exposition** de données GitHub à travers une **API REST sécurisée**.  
+Ce projet est une API développée avec **FastAPI** qui permet de consulter une liste d'utilisateurs GitHub filtrés à partir d’un fichier JSON.  
+Elle est sécurisée par une **authentification HTTP Basic**.
+Le projet a pour but de créer un pipeline complet de **collecte**, **nettoyage**, puis **exposition** de données GitHub à travers une **API REST sécurisée**.  
 Il simule un scénario réel où une entreprise souhaite rendre disponibles des données internes via une API pour ses développeurs ou services partenaires.
 
 ### 🔧 Deux grandes étapes :
@@ -41,6 +43,23 @@ L’API utilise une **authentification par token**, simulant une API privée ou 
 
 ---
 
+## 🧰 Fonctionnalités
+
+- 🔐 Authentification HTTP Basic (identifiant/mot de passe requis)
+- 📄 Chargement des utilisateurs depuis un fichier `JSON`
+- 🔎 Recherche d’utilisateurs par login, bio, date de création, etc.
+- 📘 Documentation interactive avec Swagger et ReDoc
+
+---
+
+## 📦 Prérequis
+
+- Python 3.8+
+- `pip` ou `poetry`
+- Environnement virtuel recommandé
+
+---
+
 ## 🗂️ Structure du projet
 
 ```bash
@@ -50,11 +69,11 @@ tp-api-c1-c5/
 ├── extract_users.py            # Étape 1 : extraction brute depuis GitHub
 ├── filtered_users.py           # Étape 2 : nettoyage et filtrage
 ├── users.json                  # Données brutes
+├── .env                        # Token GitHub & Token API
 ├── data/
 │   └── filtered_users.json     # Données filtrées prêtes pour l’API
 │
 ├── api/
-│   ├── main.py                 # Lancement de l’API FastAPI
 │   ├── models.py               # Schémas Pydantic
 │   ├── routes.py               # Endpoints de l’API
 │   ├── security.py             # Authentification par token (ou alternative)
@@ -63,7 +82,7 @@ tp-api-c1-c5/
 │   └── test_api.py             # Tests API (bonus)
 │
 ├── requirements.txt            # Bibliothèques à installer
-├── .env                        # Token GitHub & Token API
+├── main.py                     # Lancement de l’API FastAPI
 └── README.md                   # Documentation du projet
 ```
 
@@ -119,13 +138,34 @@ GITHUB_TOKEN=your_personal_access_token_here
 
 ⚠️ Ne partagez jamais votre token publiquement ou dans un dépôt distant!
 
+## ▶️ Lancer l'application FastAPI
 
-# Démarre l'application FastAPI
+Dans le terminal, lance la commande suivante :
 
-# Pour lancer l'application, exécutez la commande suivante dans le terminal :# uvicorn api.main:app --reload
+```bash
+uvicorn main:app --reload
+```
 
-# Pour accéder à l'API, ouvrez votre navigateur et allez à l'adresse suivante :# http://localhost:8000/users
+## 🌐 Accéder à l’API
 
-# Pour voir la documentation interactive de l'API, allez à :# http://localhost:8000/docs# Pour voir la documentation alternative de l'API, allez à :# http://localhost:8000/redoc
+- 🔗 **Liste des utilisateurs**  
+  [`http://localhost:8000/users`](http://localhost:8000/users)
 
-# Pour arrêter l'application, appuyez sur Ctrl+C dans le terminal
+- 🔍 **Recherche d’utilisateurs**  
+  [`http://localhost:8000/users/search?q=ai`](http://localhost:8000/users/search?q=ai)
+
+- 📘 **Documentation interactive (Swagger)**  
+  [`http://localhost:8000/docs`](http://localhost:8000/docs)
+
+- 📕 **Documentation alternative (ReDoc)**  
+  [`http://localhost:8000/redoc`](http://localhost:8000/redoc)
+
+## 🛑 Arrêter l'application
+
+Pour arrêter le serveur FastAPI en cours d’exécution, utilisez le raccourci clavier suivant dans le terminal où l'application tourne :
+
+```bash
+Ctrl + C
+````
+
+Cela stoppera proprement le processus Uvicorn.

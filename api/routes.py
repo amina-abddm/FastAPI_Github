@@ -2,8 +2,8 @@ import json
 from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
-from api.models import User
-from api.security import verify_token
+from .models import User
+from .security import verify_token
 
 # 🔽 Charger les données sur les utilisateurs depuis le fichier JSON
 filepath = "data/filtered_users.json"
