@@ -24,7 +24,7 @@ def get_all_users(user:str = Depends(verify_token)):
 # 🔍 Route 2 : GET /users/{login}
 @router.get("/users/{login}")
 
-def get_user_by_login(login: str):
+def get_user_by_login(login: str, user:str = Depends(verify_token)):
     for user in USERS:
         print(f"🔍 Requête reçue : recherche de l'utilisateur avec le login '{login}'")
         if user["login"].lower() == login.lower():
@@ -36,7 +36,7 @@ def get_user_by_login(login: str):
 #🧠 Route 3 : GET /users/search?q=...
 @router.get("/users/search")
 
-def search_users(q: str):
+def search_users(q: str, user:str = Depends(verify_token)):
     print(f"🔍 Requête reçue : recherche de login contenant '{q}'")
     results = [user for user in USERS if q.lower() in user["login"].lower()]
     print(f"✅ {len(results)} utilisateurs trouvés pour '{q}'")
