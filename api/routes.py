@@ -12,7 +12,7 @@ with open(filepath, "r", encoding="utf-8") as f:
     USERS = json.load(f)
     print(f"✅ {len(USERS)} utilisateurs chargés depuis {filepath}")
 
-router = APIRouter() 
+router = APIRouter(dependencies=[Depends(verify_token)]) 
 
 # ✅ Route 1 : GET /users/
 @router.get("/users")
@@ -37,7 +37,21 @@ def get_user_by_login(login: str, user:str = Depends(verify_token)):
 @router.get("/users/search")
 
 def search_users(q: str, user:str = Depends(verify_token)):
-    print(f"🔍 Requête reçue : recherche de login contenant '{q}'")
-    results = [user for user in USERS if q.lower() in user["login"].lower()]
+    print(f"🔍 Requête reçue : recherche du mot-clé '{q}' dans login, bio, created_at")
+    q_lower = q.lower()
+    results = []
+    
+    # Recherche dans login, bio et created_at
+    for user in USERS:      
+        if (q_lower in user.get("login","").lower() or 
+            q_lower in user.get("bio", "").lower() or 
+            q_lower in user.get("created_at", "").lower()):
+            
+            results.append(user)
     print(f"✅ {len(results)} utilisateurs trouvés pour '{q}'")
+    
+    if not results:
+        print(f"❌ Aucun utilisateur trouvé pour '{q}'")
+        raise HTTPException(status_code=404, detail="Aucun utilisateur trouvé")
+    
     return results
