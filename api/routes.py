@@ -1,6 +1,8 @@
 import json
 from fastapi import APIRouter
+from fastapi import Depends
 from fastapi import HTTPException
+from models import User
 from security import verify_token
 
 # 🔽 Charger les données sur les utilisateurs depuis le fichier JSON
@@ -15,7 +17,7 @@ router = APIRouter()
 # ✅ Route 1 : GET /users/
 @router.get("/users")
 
-def get_all_users():
+def get_all_users(user:str = Depends(verify_token)):
     print("📥 Requête reçue : liste complète des utilisateurs")
     return USERS
 
