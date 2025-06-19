@@ -54,8 +54,7 @@ L’API utilise une **authentification par token**, simulant une API privée ou 
 
 ## 📦 Prérequis
 
-- Python 3.8+
-- `pip` ou `poetry`
+- Python 3.10+
 - Environnement virtuel recommandé
 
 ---
@@ -130,7 +129,7 @@ source .venv/bin/activate      # 💻 Sur macOS/Linux
 pip install -r requirements.txt
 ```
 
-### 4. Configurer le token GitHub (🔒 sécurisé)
+### 4.Configurer le token GitHub (🔒 sécurisé)
 
 ```bash
 GITHUB_TOKEN=your_personal_access_token_here
@@ -138,7 +137,7 @@ GITHUB_TOKEN=your_personal_access_token_here
 
 ⚠️ Ne partagez jamais votre token publiquement ou dans un dépôt distant!
 
-## ▶️ Lancer l'application FastAPI
+### ▶️ Lancer l'application FastAPI
 
 Dans le terminal, lance la commande suivante :
 
@@ -146,7 +145,7 @@ Dans le terminal, lance la commande suivante :
 uvicorn main:app --reload
 ```
 
-## 🌐 Accéder à l’API
+### 🌐 Accéder à l’API
 
 - 🔗 **Liste des utilisateurs**  
   [`http://localhost:8000/users`](http://localhost:8000/users)
@@ -160,7 +159,7 @@ uvicorn main:app --reload
 - 📕 **Documentation alternative (ReDoc)**  
   [`http://localhost:8000/redoc`](http://localhost:8000/redoc)
 
-## 🛑 Arrêter l'application
+### 🛑 Arrêter l'application
 
 Pour arrêter le serveur FastAPI en cours d’exécution, utilisez le raccourci clavier suivant dans le terminal où l'application tourne :
 
