@@ -1,9 +1,9 @@
-import json
+from fastapi import FastAPI
+from routes import router  # <- importe le router défini dans routes.py
 
-# 🔽 Charger les données sur les utilisateurs depuis le fichier JSON
-filepath = "data/filtered_users.json"
+app = FastAPI()
 
-with open(filepath, "r", encoding="utf-8") as f:
-    USERS = json.load(f)
-    print(f"✅ {len(USERS)} utilisateurs chargés depuis {filepath}")
+# 🔗 Enregistre les routes
+app.include_router(router)
+
 

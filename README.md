@@ -118,3 +118,14 @@ GITHUB_TOKEN=your_personal_access_token_here
 ```
 
 ⚠️ Ne partagez jamais votre token publiquement ou dans un dépôt distant!
+
+
+# Démarre l'application FastAPI
+
+# Pour lancer l'application, exécutez la commande suivante dans le terminal :# uvicorn api.main:app --reload
+
+# Pour accéder à l'API, ouvrez votre navigateur et allez à l'adresse suivante :# http://localhost:8000/users
+
+# Pour voir la documentation interactive de l'API, allez à :# http://localhost:8000/docs# Pour voir la documentation alternative de l'API, allez à :# http://localhost:8000/redoc
+
+# Pour arrêter l'application, appuyez sur Ctrl+C dans le terminal
